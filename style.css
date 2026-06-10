@@ -1,0 +1,13 @@
+.fondo{
+    background-color: rgb(102, 95, 95);
+    color: whitesmoke;
+    position: fixed;
+}
+
+nav{
+    text-align: right;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1em;
+}
