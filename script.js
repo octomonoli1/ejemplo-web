@@ -10,27 +10,60 @@ function mostrar_tabla(){
 
 document.getElementById("enviar").addEventListener("click", (event) => {
     event.preventDefault();
-    const nombre = document.getElementById("nombre").value;
-    const apellidos = document.getElementById("apellidos").value;
-    const edad = document.getElementById("edad").value;
-    const curso = document.getElementById("curso").value;
-    validar_datos(nombre, apellidos, edad, curso);
+    let nombre = document.getElementById("nombre").value;
+    let apellidos = document.getElementById("apellidos").value;
+    let edad = document.getElementById("edad").value;
+    let curso = document.getElementById("curso").value;
 
+    if(validar_datos(nombre, apellidos, edad, curso)){
+        this.guardar_alumno(nombre, apellidos, edad, curso);
+    }
+
+    //Esto desactiva a los dos segundos cualquier mensaje mostrado
     setTimeout(()=> {
         document.getElementById("mensajeError").textContent = "";
         document.getElementById("mensajeOk").textContent = "";
     }, 2000);
+
+    //Una vez 
     
 });
 
-function validar_datos(nombre, apellido, edad, curso){
+function validar_datos(nombre, apellidos, edad, curso){
 
-    if(nombre === "" || apellido === "" || edad === "" || curso === ""){
+    let ok = false;
+
+    if(nombre === "" || apellidos === "" || edad === "" || curso === ""){
         document.getElementById("mensajeError").textContent = "Todos los campos son obligatorios";
-    } else if(isNaN(edad) || edad < 0 || edad > 120){
+    } else if(isNaN(edad) || edad < 16){
         document.getElementById("mensajeError").textContent = "La edad debe ser un número entre 0 y 120";
     } else {
         document.getElementById("mensajeOk").textContent = "Alumno registrado correctamente";
+        ok = true;
     }
 
+    return ok;
+
+}
+
+function guardar_alumno(nombre, apellidos, edad, curso){
+    let tr = document.createElement("tr");
+    
+    let nombreTd = document.createElement("td");
+    nombreTd.textContent = nombre
+    let apellidosTd = document.createElement("td")
+    apellidosTd.textContent = apellidos;
+
+    let edadTd = document.createElement("td");
+    edadTd.textContent = edad;
+
+    let cursoTd = document.createElement("td");
+    cursoTd.textContent = curso;
+
+    tr.appendChild(nombreTd);
+    tr.appendChild(apellidosTd);
+    tr.appendChild(edadTd);
+    tr.appendChild(cursoTd);
+
+    document.getElementById("tabla_alumnos").appendChild(tr);
 }
