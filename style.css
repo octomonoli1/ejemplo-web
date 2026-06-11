@@ -1,13 +1,81 @@
-.fondo{
-    background-color: rgb(102, 95, 95);
+nav {
+    display: flex; /*Activamos flexbox*/
+    justify-content: space-between; /*Formato dos columnas*/
+    align-items: center; /*Alinear los elementos al centro*/
+    background-color: gray;
     color: whitesmoke;
-    position: fixed;
+    padding: 0 10px;
 }
 
-nav{
-    text-align: right;
-    top: 0;
-    left: 0;
+footer{
+    text-align: center;
+    padding: 10px 0;
+    background-color: gray;
+    color: whitesmoke;
+    align-items: center;
+}
+
+.menu {
+    display: flex; 
+    list-style: none;
+    gap: 20px;
+}
+
+.option{
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.option:hover{
+    background-color: whitesmoke;
+    color: gray;
+}
+
+form{
+    width: 80%;
+    margin: 20px auto;
+}
+
+input, select, textarea{
+    display: block;
     width: 100%;
-    padding: 1em;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: whitesmoke;
+}
+
+input:focus, select:focus{
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: white;
+}
+
+table{
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+#alumnos{
+    display: none;
+}
+
+#mensajeError{
+    color:red;
+    font-weight: bold;
+}
+
+#mensajeOk{
+    color:green;
+    font-weight: bold;
+}
+
+h2{
+    margin: 20px auto;
 }
