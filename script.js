@@ -1,3 +1,5 @@
+let numAlumnos = 0;
+
 function mostrar_formulario(){
     document.getElementById("registro").style.display = "block";
     document.getElementById("alumnos").style.display = "none";
@@ -13,10 +15,13 @@ document.getElementById("enviar").addEventListener("click", (event) => {
     let nombre = document.getElementById("nombre").value;
     let apellidos = document.getElementById("apellidos").value;
     let edad = document.getElementById("edad").value;
+    let email = document.getElementById("email").value;
     let curso = document.getElementById("curso").value;
 
-    if(validar_datos(nombre, apellidos, edad, curso)){
-        this.guardar_alumno(nombre, apellidos, edad, curso);
+    if(validar_datos(nombre, apellidos, edad, email,curso)){
+        this.guardar_alumno(nombre, apellidos, edad, email, curso);
+        this.numAlumnos = document.getElementsByClassName("alumno").length;
+        document.getElementById("recuento").textContent = "Hay un total de " + numAlumnos + " elementos";
     }
 
     //Esto desactiva a los dos segundos cualquier mensaje mostrado
@@ -29,14 +34,16 @@ document.getElementById("enviar").addEventListener("click", (event) => {
     
 });
 
-function validar_datos(nombre, apellidos, edad, curso){
+function validar_datos(nombre, apellidos, edad, email, curso){
 
     let ok = false;
 
     if(nombre === "" || apellidos === "" || edad === "" || curso === ""){
         document.getElementById("mensajeError").textContent = "Todos los campos son obligatorios";
     } else if(isNaN(edad) || edad < 16){
-        document.getElementById("mensajeError").textContent = "La edad debe ser un número entre 0 y 120";
+        document.getElementById("mensajeError").textContent = "La edad debe ser un número mayor a 16";
+    } else if(!email.includes('@')){
+        document.getElementById("mensajeError").textContent = "El email debe contener @";
     } else {
         document.getElementById("mensajeOk").textContent = "Alumno registrado correctamente";
         ok = true;
@@ -48,6 +55,7 @@ function validar_datos(nombre, apellidos, edad, curso){
 
 function guardar_alumno(nombre, apellidos, edad, curso){
     let tr = document.createElement("tr");
+    tr.classList.add("alumno");
     
     let nombreTd = document.createElement("td");
     nombreTd.textContent = nombre

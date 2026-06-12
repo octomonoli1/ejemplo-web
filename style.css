@@ -1,3 +1,7 @@
+body{
+    font-family: sans-serif;
+}
+
 nav {
     display: flex; /*Activamos flexbox*/
     justify-content: space-between; /*Formato dos columnas*/
@@ -21,13 +25,13 @@ footer{
     gap: 20px;
 }
 
-.option{
+.link{
     cursor: pointer;
     padding: 5px;
     border-radius: 10px;
 }
 
-.option:hover{
+.link:hover{
     background-color: whitesmoke;
     color: gray;
 }
@@ -62,8 +66,23 @@ table{
     border: 1px solid black;
 }
 
-tr, td{
+tr, td, th{
     border: 1px solid black;
+    text-align: center;
+     
+}
+
+th{
+    background-color: gray;
+    color: whitesmoke;
+}
+
+tr:nth-child(even){
+    background-color: white;
+}
+
+tr:nth-child(odd){
+    background-color: lightgray;
 }
 
 #alumnos{
